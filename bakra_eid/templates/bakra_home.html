@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width", initial-scale="1.0">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style media="screen">
+  .greeter_name {
+    color: black;
+    font-size: 2.3ems;
+  }
+
+  .maingif {
+    width: 50%;
+  }
+.image_container {
+    border: 4px solid black;
+    border-radius: 18px;
+}
+
+@media screen and (max-width: 900px) {
+  .image_container {
+    border: 4px solid green;
+    border-radius: 20px;
+    width: 80%;
+  }
+
+}
+
+
+</style>
+</head>
+<body><br>
+  {% if 'name' in request %}
+  <center><h1 class="greeter_name">{{ extract_name|capfirst }} wishes you,</h1><br>
+  {% else %}
+  <center><h1 class="greeter_name">{{ name|capfirst|default:"a" }} wishes you,</h1><br>
+  {% endif %}
+<img src="{% static 'main.gif' %}" alt="" class="maingif">
+</center>
+
+<hr>
+
+<center>
+<div class="container">
+  <div class="jumbotron" style="box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
+    {% if name %}
+      <h2 class="make_your_own">Share on</h2>
+      <a href="https://api.whatsapp.com/send?text={{ share_link }}"><img src="https://image.flaticon.com/icons/svg/134/134937.svg" alt="" width="50px;"></a>
+     {% endif %}
+    <h1 class="make_your_own">Make your own.</h1>
+
+    <form class="" action="" method="post">{% csrf_token %}
+      <input type="text" name="greeter_name_input" value="">
+      <input type="submit" name="" value="Create">
+    </form>
+  </center>
+  </div>
+</div>
+<hr><br>
+<div style="text-align: center; bottom: 0; top:0;position:relative;margin: 78px auto;">
+  <p>Built with ❤ by <a href="#">ArshErgon</a></p>
+</div>
+
+<!-- <center>
+      <h2>Eid's Pictures</h2>
+      <div >
+        <img class="image_container" src="https://images.pexels.com/photos/1253532/pexels-photo-1253532.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="eid image 1">
+        <p class="hindi-text">{{ text1|safe|default:"arsh" }}</p>
+      </div>
+      <div>
+        <img class="image_container" src="https://images.pexels.com/photos/1071979/pexels-photo-1071979.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="eid image 2">
+        <p>{{ text2|safe|default:"arsh" }}</p>
+      </div><br>
+</center> -->
+</body>
+
+</html>
