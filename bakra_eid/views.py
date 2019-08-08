@@ -10,7 +10,10 @@ def bakra_home(request):
         filter_data = EidModel.objects.filter(greeter_name=name)
         for data in filter_data:
             pass
-        share_link = "https://bakraeid.herokuapp.com/name:" + str(f"{name}" + "/id:" + str(f"{data.pk}"))
+        if request.is_secure():
+            share_link = "https://bakraeid.herokuapp.com/name:" + str(f"{name}" + "/id:" + str(f"{data.pk}"))        
+        else:
+            share_link = "http://bakraeid.herokuapp.com/name:" + str(f"{name}" + "/id:" + str(f"{data.pk}"))
         return render(request, 'bakra_home.html', {'name':name, 'share_link': share_link})
     return render(request, 'bakra_home.html', {'name':name})
 
@@ -33,6 +36,9 @@ def bakra_display_name(request, name, pk):
         filter_data = EidModel.objects.filter(greeter_name=name)
         for data in filter_data:
             pass
-        share_link = "http://127.0.0.1/name:" + str(f"{name}" + "/id:" + str(f"{data.pk}"))
+        if request.is_secure():
+            share_link = "https://bakraeid.herokuapp.com/name:" + str(f"{name}" + "/id:" + str(f"{data.pk}"))        
+        else:
+            share_link = "http://bakraeid.herokuapp.com/name:" + str(f"{name}" + "/id:" + str(f"{data.pk}"))
         return render(request, 'bakra_home.html', {'name':name, 'share_link': share_link})
     return render(request, 'bakra_home.html', {'extract_name':extract_name, 'request':request.path})
