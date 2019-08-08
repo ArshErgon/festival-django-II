@@ -1,42 +1,33 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-143505407-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
 
+gtag('config', 'UA-143505407-1', { 'optimize_id': 'GTM-KT8BSS7'});
+</script>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width", initial-scale="1.0">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <style media="screen">
-  .greeter_name {
-    color: black;
-    font-size: 2.3ems;
-  }
-
-  .maingif {
-    width: 50%;
-  }
-.image_container {
-    border: 4px solid black;
-    border-radius: 18px;
-}
-
-@media screen and (max-width: 900px) {
-  .image_container {
-    border: 4px solid green;
-    border-radius: 20px;
-    width: 80%;
-  }
-
-}
-
-
+  .greeter_name {color: black; font-size: 2.3em;}
+  .greeter_name span {animation: animate_name 2s infinite;transition: 0.3s;font-weight: bolder;}
+  @keyframes animate_name {0% {color: red;} 25% {color: blue;} 40% {color: green;} 60% {color: orange;} 100% {color: purple;}}
+  .maingif {width: 50%;}
+  .image_container {border: 4px solid black; border-radius: 18px;}
+  @media screen and (max-width: 900px) {.image_container {border: 4px solid green;border-radius: 20px;width: 80%;}}
 </style>
 </head>
 <body><br>
   {% if 'name' in request %}
-  <center><h1 class="greeter_name">{{ extract_name|capfirst }} wishes you,</h1><br>
+  <center><h1 class="greeter_name"><span>{{ extract_name|capfirst }}</span> wishes you,</h1><br>
   {% else %}
-  <center><h1 class="greeter_name">{{ name|capfirst|default:"a" }} wishes you,</h1><br>
+  <center><h1 class="greeter_name"><span>{{ name|capfirst }}</span> wishes you,</h1><br>
   {% endif %}
 <img src="{% static 'gif/main.gif' %}" alt="" class="maingif">
 </center>
@@ -53,15 +44,15 @@
     <h1 class="make_your_own">Make your own.</h1>
 
     <form class="" action="" method="post">{% csrf_token %}
-      <input type="text" name="greeter_name_input" value="">
-      <input type="submit" name="" value="Create">
+      <input type="text" name="greeter_name_input" value="" style="margin-bottom: 10px;"><br>
+      <input type="submit" name="" value="Create" class="btn btn-primary">
     </form>
   </center>
   </div>
 </div>
 <hr><br>
 <div style="text-align: center; bottom: 0; top:0;position:relative;margin: 78px auto;">
-  <p>Built with ❤ by <a href="#">ArshErgon</a></p>
+  <p>Built with ❤ by <a href onclick="alert('google my name!')">ArshErgon</a></p>
 </div>
 
 <!-- <center>

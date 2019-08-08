@@ -5,6 +5,7 @@ from .models import EidModel
 def bakra_home(request):
     name = request.POST.get('greeter_name_input')
     if request.method == 'POST':
+        name = name.lower()
         EidModel.objects.create(greeter_name=name)
         filter_data = EidModel.objects.filter(greeter_name=name)
         for data in filter_data:
