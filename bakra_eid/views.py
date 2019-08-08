@@ -10,7 +10,7 @@ def bakra_home(request):
         filter_data = EidModel.objects.filter(greeter_name=name)
         for data in filter_data:
             pass
-        share_link = "https://bakraeid.herokuapp.com/name:" + str(f"{name}" + "/id:" + str(f"{data.pk}"))
+        share_link = "https://bakraeid2019.herokuapp.com/name:" + str(f"{name}" + "/id:" + str(f"{data.pk}"))
         return render(request, 'bakra_home.html', {'name':name, 'share_link': share_link})
     return render(request, 'bakra_home.html', {'name':name})
 
